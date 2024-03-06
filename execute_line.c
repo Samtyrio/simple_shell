@@ -8,11 +8,10 @@ int execute_command(char *full_path, char *args[]);
 void cleanup_execution(char *full_path, pid_t pid);
 
 /**
- * execute_line - executes the line itself
- * @line: the function that takes care of the line
- * Return: what is needed
+ * execute_line - Executes the line itself
+ * @line: The function that takes care of the line
+ * Return: What is needed
  */
-
 int execute_line(char *line)
 {
 	if (*line == '\n')
@@ -28,9 +27,9 @@ int execute_line(char *line)
 }
 
 /**
- * process_input - inputs the process
- * @line: the parameter
- * Return: what is needed
+ * process_input - Inputs the process
+ * @line: The parameter
+ * Return: What is needed
  */
 int process_input(char *line)
 {
@@ -69,10 +68,10 @@ int process_input(char *line)
 }
 
 /**
- * cleanup_execution - cleanup the execution
- * @full_path: handle the path
- * @pid: handles the pid
- * Return: what is needed
+ * cleanup_execution - Cleanup the execution
+ * @full_path: Handle the path
+ * @pid: Handle the pid
+ * Return: What is needed
  */
 void cleanup_execution(char *full_path, pid_t pid)
 {

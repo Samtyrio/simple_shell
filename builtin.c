@@ -15,4 +15,3 @@ void env_builtin(void)
 {
 	print_environment();
 }
-

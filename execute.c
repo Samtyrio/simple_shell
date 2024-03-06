@@ -3,8 +3,8 @@
 
 /**
  * tokenize_input - Tokenize the input line into arguments
- * @line: line The input line containing the command
- * @args: args Array to store the arguments
+ * @line: The input line containing the command
+ * @args: Array to store the arguments
  * Return: Number of arguments or -1 on failure
  */
 int tokenize_input(char *line, char *args[])
@@ -30,7 +30,7 @@ int tokenize_input(char *line, char *args[])
 
 /**
  * resolve_command - Resolve the full path of the command
- * @command: command The command to resolve
+ * @command: The command to resolve
  * Return: The full path of the command if found, NULL otherwise
  */
 char *resolve_command(char *command)
@@ -60,8 +60,8 @@ char *resolve_command(char *command)
 
 /**
  * execute_command - Execute the command with given full path and arguments
- * @full_path: full_path The full path of the command
- * @args: args Array of arguments for the command
+ * @full_path: The full path of the command
+ * @args: Array of arguments for the command
  * Return: 0 on success, -1 on failure
  */
 int execute_command(char *full_path, char *args[])

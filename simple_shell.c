@@ -1,11 +1,9 @@
 #include "shell.h"
 
-#define BUFFER_SIZE 1024
-
 /**
-* readline - Read a line of input from the user
-* Return: pointer to the input line
-*/
+ * readline - Read a line of input from the user
+ * Return: Pointer to the input line
+ */
 char *readline(void)
 {
 	char *line = NULL;
@@ -31,10 +29,9 @@ char *readline(void)
 }
 
 /**
-* main - contains the main function
-* Return: what is needed
-*/
-
+ * main - Contains the main function
+ * Return: 0 on success
+ */
 int main(void)
 {
 	char *line;
