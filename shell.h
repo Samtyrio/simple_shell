@@ -22,5 +22,5 @@ void handle_builtin_commands(char *args[]);
 int execute_command(char *full_path, char *args[]);
 void print_command_not_found_error(char *command);
 char *resolve_command(char *command);
-void print_environment();
+void print_environment(void);
 #endif

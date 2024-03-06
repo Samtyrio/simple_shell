@@ -1,58 +1,5 @@
 #include "shell.h"
-
-/**
- * execute_line - Execute the command entered by the user
- * @line: line Pointer to the input line containing the command
- * Return: 0 on success, 1 on failure, and 2 if the shell should exit
- */
-int execute_line(char *line)
-{
-	char *args[BUFFER_SIZE];
-	char *full_path;
-	int i, status;
-	pid_t pid;
-
-	if (*line == '\n')
-		return (0);
-	if (strcmp(line, "exit\n") == 0)
-		return (EXIT_SHELL);
-	if (line[strlen(line) - 1] == '\n')
-		line[strlen(line) - 1] = '\0';
-
-	i = tokenize_input(line, args);
-	if (i == -1)
-		return (1);
-
-	full_path = resolve_command(args[0]);
-	if (full_path == NULL)
-		return (1);
-
-	pid = fork();
-	if (pid == -1)
-	{
-		perror("fork");
-		free(full_path);
-		return (1);
-	}
-	if (pid == 0)
-	{
-		if (execute_command(full_path, args) == -1)
-		{
-			free(full_path);
-			return (1);
-		}
-		_exit(EXIT_SUCCESS);
-	}
-	else
-	{
-		free(full_path);
-		waitpid(pid, &status, 0);
-		if (WIFEXITED(status) && WEXITSTATUS(status) == EXIT_SUCCESS)
-			return (0);
-		else
-			return (1);
-	}
-}
+#include <unistd.h>
 
 /**
  * tokenize_input - Tokenize the input line into arguments
@@ -134,17 +81,11 @@ void print_environment(void)
 {
 	extern char **environ;
 	char **env = environ;
-	size_t len;
 
 	while (*env != NULL)
 	{
-		len = strlen(*env);
-		if ((ssize_t)write(STDOUT_FILENO, *env, len) != (ssize_t)len)
-		{
-			perror("write");
-			return;
-		}
-		if (write(STDOUT_FILENO, "\n", 1) != 1)
+		size_t len = strlen(*env);
+		if (write(STDOUT_FILENO, *env, len) != (ssize_t)len || write(STDOUT_FILENO, "\n", 1) != 1)
 		{
 			perror("write");
 			return;
